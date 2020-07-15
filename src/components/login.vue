@@ -55,15 +55,15 @@
                 this.$refs.LoginFormRef.validate(async valid => {
                         if (!valid)  return ;
                         const result = await  this.$http.post('login',this.LoginForm)
-                        if(result.data.meta.status != 200){
+                        if(result.data.meta.status !== 200){
                             return this.$message.error('登陆失败')
                         }else{
                              this.$message.success('登陆成功')
                              //将token放入session
-                            window.sessionStorage.setItem("token",result.data.token)
+                            window.sessionStorage.setItem('token',result.data.data.token)
+                            const tokenstring = window.sessionStorage.getItem('token')
                             //网页跳转到内部home页面
                             this.$router.push('/home')
-
                         }
                     }
                 )
